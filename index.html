@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Carnetización Profesional</title>
+    <script src="style.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="imagenes/logoPestaña.png" type="image/x-icon">
+
+</head>
+
+<body>
+
+    <div id="headerFinal">
+        <h1>Carnets Estudiantiles</h1>
+        <p>Documento Oficial - Ciclo Escolar 2025-2026</p>
+    </div>
+
+    <div class="modal-overlay" id="modalConfirmar">
+        <div class="modal-box">
+            <h2>¿ESTÁS SEGURO QUE LOS DATOS SON CORRECTOS?</h2>
+            <span class="alerta-roja">⚠️ ADVERTENCIA</span>
+            <span class="texto-advertencia">ESTE CARNET SERÁ EL DEFINITIVO Y NO PODRÁ SER MODIFICADO</span>
+            <div style="display: flex; justify-content: center;">
+                <button class="btn-modal btn-si" onclick="procesarAgregado(true)">SI GENERAR</button>
+                <button class="btn-modal btn-no" onclick="procesarAgregado(false)">REVISAR</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modalDescarga">
+        <div class="modal-box" style="border-color: var(--danger);">
+            <h2>¿DESEAS DESCARGAR EL PDF FINAL?</h2>
+            <span class="alerta-roja">⚠️ ADVERTENCIA FINAL</span>
+            <span class="texto-advertencia">NO PODRÁ HACER NUEVAS MODIFICACIONES. POR FAVOR VERIFIQUE YA QUE NO PODRA
+                AGREGAR MAS ESTUDIANTES. UNA VEZ DESCARGADO SERÁ EL DEFINITIVO POR EL RESTO DEL AÑO ESCOLAR.</span>
+            <div style="display: flex; justify-content: center;">
+                <button class="btn-modal btn-si" onclick="ejecutarDescargaPDF()">SI, DESCARGAR</button>
+                <button class="btn-modal btn-no" onclick="cerrarModalDescarga()">REVISAR LISTA</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="contenedor-principal" id="areaEdicion">
+        <div class="formulario">
+            <h2 style="text-align:center; margin-top:0;">Registro de Alumnos</h2>
+            <label>Nombre Completo</label>
+            <input type="text" id="inNombre" oninput="formatearNombre(this); actualizar()">
+
+            <div class="fila-doble">
+                <div style="flex:1"><label>Cédula</label><input type="text" id="inCedula"
+                        oninput="formatearCedula(this); actualizar()"></div>
+                <div style="flex:1"><label>ID</label><input type="text" id="inID"
+                        oninput="validarNumeros(this); actualizar()"></div>
+            </div>
+
+            <div class="fila-doble">
+                <div style="flex:1"><label>F. Nacimiento</label><input type="date" id="inFecha" oninput="actualizar()">
+                </div>
+                <div style="flex:1">
+                    <label>Sexo</label>
+                    <select id="inSexo" oninput="actualizar()">
+                        <option value="">--</option>
+                        <option value="MASCULINO">MASCULINO</option>
+                        <option value="FEMENINO">FEMENINO</option>
+                    </select>
+                </div>
+            </div>
+
+            <label>Foto Estudiante</label>
+            <input type="file" id="inFoto" accept="image/*" onchange="leerFoto(this)">
+
+            <button class="btn-confirmar" onclick="abrirModalConfirmar()">✅ AGREGAR A LISTA</button>
+        </div>
+
+        <div class="carnet-diseno" id="borrador">
+
+            <div class="marca_de_agua">
+                <img src="imagenes/marca de agua.png" alt="logo" style="width: 100%;">
+            </div>
+
+            <div class="franja"
+                style="display: flex; position: relative;gap: 5px;">
+
+                <img src="imagenes/logo_colegio.png" style="position: absolute; 
+                right: 35px; 
+                top: 50%; 
+                transform: translateY(-50%); 
+                height: 60px; 
+                width: auto; 
+                object-fit: contain; 
+                z-index: 10;">
+
+                <span style="font-size: 26px; align-items: right; font-weight: bold;">Olive Trees Christian School</span>
+
+            </div>
+            <div class="contenido-central">
+                
+                <div class="columna-foto">
+                    <img id="preFoto" class="foto-estudiante" src="">
+                    <div class="ano-escolar">2025-2026</div>
+                </div>
+                <div class="datos">
+                    <p><span class="label-carnet"></span> <span id="preNombre"
+                            class="valor-nombre">---</span></p>
+                    <div style="display: flex;">
+                        <p style="flex:1"><span class="label-carnet">N° Identificación:</span> <span id="preCedula"
+                                class="valor-dato">---</span></p>
+                        <p style="flex:1"><span class="label-carnet">ID:</span> <span id="preID"
+                                class="valor-dato">---</span></p>
+                    </div>
+                    <div style="display: flex;">
+                        <p style="flex:1"><span class="label-carnet">F. Nac.:</span> <span id="preFecha"
+                                class="valor-dato">---</span></p>
+                        <p style="flex:1"><span class="label-carnet">SEXO:</span> <span id="preSexo"
+                                class="valor-dato">---</span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="pie-estudiantil">
+                <p class="texto-azul">Carnet de estudiante internacional</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="controles" style="display:none; text-align:center; margin: 40px 0;">
+        <button id="btnGranDescarga" onclick="abrirModalDescarga()"
+            style="padding:22px 60px; background:var(--primary); color:white; border:none; border-radius:15px; cursor:pointer; font-weight:bold; font-size:22px;">📄
+            GENERAR PDF DEFINITIVO</button>
+        <button id="btnDescargarDeNuevo" onclick="soloDescargar()" class="ocultar"
+            style="padding:22px 60px; background:var(--secondary); color:white; border:none; border-radius:15px; cursor:pointer; font-weight:bold; font-size:22px;">📄
+            VOLVER A DESCARGAR PDF</button>
+    </div>
+
+    <div id="contenedorCarnets"></div>
+
+</body>
+
+</html>

@@ -1,0 +1,404 @@
+:root {
+    --primary: #231aa5;
+    --secondary: #27ae60;
+    --danger: #f50505;
+    --bg: #edeff2;
+    --gold: #d4af37;
+}
+
+body {
+    font-family: serif,'Times New Roman', sans-serif;
+    background-color: var(--bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    color: #333;
+    transition: all 0.5s ease;
+}
+
+/* Encabezado Elegante (Oculto al inicio) */
+#headerFinal {
+    display: none;
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    border-bottom: 2px solid var(--gold);
+    width: 80%;
+}
+
+/* SECCIÓN MODIFICADA: PROPIEDADES EN FORMATO VIÑETA */
+#headerFinal h1 {
+    font-size: 42px;
+    color: #0033FF;
+    /* Azul Eléctrico */
+    letter-spacing: 4px;
+    /* Espaciado de letras */
+    margin: 0;
+    /* Sin margen */
+    font-weight: 900;
+    /* Grosor máximo */
+    text-transform: uppercase;
+    /* Mayúsculas */
+}
+
+#headerFinal p {
+    color: #7f8c8d;
+    font-size: 18px;
+    margin-top: 5px;
+}
+
+.contenedor-principal {
+    display: flex;
+    gap: 25px;
+    max-width: 1200px;
+    align-items: flex-start;
+    position: relative;
+}
+.marca_de_agua {
+    position: absolute;
+    bottom: 30px;
+    right: 50px;
+    opacity: 0.1;
+    z-index: 0;
+    width: 200px;
+    pointer-events: none;   
+}   
+/* Formulario */
+.formulario {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    border: 1px solid #ccc;
+}
+
+.fila-doble {
+    display: flex;
+    gap: 10px;
+}
+
+label {
+    font-size: 11px;
+    font-weight: bold;
+    color: #555;
+    text-transform: uppercase;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 15px 0;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+.btn-confirmar {
+    width: 100%;
+    padding: 14px;
+    background-color: var(--secondary);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* DISEÑO CARNET */
+.carnet-diseno {
+    width: 500px;
+    height: 320px;
+    background: #ffffff;
+    border: 3px solid #000;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.franja {
+    background: var(--primary);
+    color: #ffffff;
+    text-align: left;
+    padding: 14px;
+    font-size: 28px;
+}
+
+.contenido-central {
+    display: flex;
+    padding: 10px 15px 0 15px;
+    flex-grow: 1;
+    align-items: flex-start;
+    margin-top: 5px;
+    position: relative;
+}
+
+.columna-foto {
+    width: 160px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.foto-estudiante {
+    width: 140px;
+    height: 175px;
+    border: 2px solid #000;
+    object-fit: cover;
+    background: #f9f9f9;
+}
+
+.ano-escolar {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 5px;
+    color: #000;
+}
+
+.datos {
+    flex: 1;
+    margin-left: 15px;
+    padding-top: 5px;
+}
+
+.datos p {
+    margin: 3px 0;
+}
+
+.label-carnet {
+    font-weight: bold;
+    font-size: 10px;
+    color: #555;
+    display: block;
+}
+
+.valor-nombre {
+    font-size: 24px;
+    font-weight: 800;
+    color: #000;
+    display: block;
+    line-height: 1.1;
+    margin-bottom: 5px;
+}
+
+.valor-dato {
+    font-size: 20px;
+    font-weight: 700;
+    color: #000;
+    display: block;
+}
+
+.pie-estudiantil {
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background: #fff;
+    border-top: 1px solid #eee;
+}
+
+.texto-azul {
+    font-weight: 900;
+    color: #000;
+    font-size: 24px;
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+/* MODALES */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-box {
+    background: white;
+    width: 550px;
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    border: 5px solid #f39c12;
+}
+
+.modal-box h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+    color: #1302fa;
+    font-weight: 900;
+}
+
+.alerta-roja {
+    color: var(--danger);
+    font-size: 24px;
+    font-weight: 900;
+    margin: 15px 0;
+    display: block;
+}
+
+.texto-advertencia {
+    font-size: 18px;
+    color: #0a0a0a;
+    font-weight: bold;
+    margin-bottom: 30px;
+    display: block;
+}
+
+.btn-modal {
+    padding: 15px 30px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    border: none;
+    min-width: 150px;
+}
+
+.btn-si {
+    background: var(--secondary);
+    color: white;
+    margin-right: 15px;
+}
+
+.btn-no {
+    background: #95a5a6;
+    color: white;
+}
+
+/* WRAPPER Y ELIMINAR */
+.carnet-wrapper {
+    position: relative;
+    padding: 10px;
+    background: white;
+    border-radius: 15px;
+    transition: transform 0.3s;
+}
+
+.btn-eliminar-top {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: var(--danger);
+    color: white;
+    border: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: bold;
+    z-index: 100;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+#contenedorCarnets {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    padding: 40px;
+    width: 100%;
+    position: relative;
+}
+
+.ocultar {
+    display: none !important;
+}
+
+/* AJUSTES PARA CELULARES */
+@media (max-width: 600px) {
+    .contenedor-principal {
+        flex-direction: column;
+        /* Pone el formulario arriba y el carnet abajo */
+        align-items: center;
+        width: 100%;
+    }
+
+    .formulario {
+        width: 90%;
+        /* El formulario se estira al ancho del celular */
+    }
+
+    .carnet-diseno {
+        width: 100%;
+        max-width: 400px; /* Máximo ancho en móvil */
+        height: auto;
+        min-height: 256px; /* 320px * 0.8 (proporcional) */
+        aspect-ratio: 500/320; /* Mantiene relación de aspecto */
+        transform: scale(0.95);
+        margin: 0 auto;
+    }
+
+    .contenido-central {
+        padding: 8px 12px 0 12px;
+    }
+
+    .columna-foto {
+        width: 25%; /* 160px * 0.8 */
+    }
+
+    .foto-estudiante {
+        width: 90px;
+        height: 120px;
+    }
+
+    .valor-nombre {
+        font-size: 5vw; /* 24px * 0.8 */
+    }
+
+    .valor-dato {
+        font-size: 4vw; /* 20px * 0.8 */
+    }
+
+    .franja {
+        padding: 10px;
+    }
+
+    .franja span {
+        font-size: 10vw !important; /* Reducido proporcionalmente */
+    }
+
+    .franja img {
+        height: 45px !important;
+        right: 15px !important;
+    }
+
+    .texto-azul {
+        font-size: 3vw;
+    }
+
+    .marca_de_agua {
+        width: 150px; /* Un poco más pequeña */
+        opacity: 0.08; /* Más transparente para no molestar */
+        content: fit;
+    }
+
+    /* Ajustamos el tamaño del logo y texto en el móvil */
+    .franja img {
+        height: 35px !important;
+    }
+
+    .franja span {
+        font-size: 16px !important;
+    }
+
+    #headerFinal h1 {
+        font-size: 28px;
+        /* Título más pequeño para que quepa en una sola línea */
+    }
+
+    
+}
